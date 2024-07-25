@@ -9,10 +9,6 @@ body {
     background-image: linear-gradient(rgb(129, 105, 255, 0.2), rgb(129, 105, 255, 1));
     background-size: 100% 100vh;
     background-attachment: fixed;
-    font-family: cursive;
-}
-button {
-  font-family: cursive;
 }
 
 .container {
