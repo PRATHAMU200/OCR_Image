@@ -3,14 +3,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f0f0f0; /* Light gray background */
+    height: auto;
+    margin: 20px;
+    /*background-color: #f0f0f0; Light gray background */
+    background-image: linear-gradient(rgb(129, 105, 255, 0.2), rgb(129, 105, 255, 1));
+    background-size: 100% 100vh;
+    background-attachment: fixed;
+    font-family: cursive;
+}
+button {
+  font-family: cursive;
 }
 
 .container {
     text-align: center;
-    background-color: #fff; /* White background for container */
+    /* background-color: #fff; White background for container */
+    background-image: linear-gradient(#9751f861, #55a0ebc4);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
@@ -30,57 +38,223 @@ h1 {
     display: none; /* Hide file input */
 }
 
-.buttons button {
+.buttons button{
     padding: 10px 20px;
     margin: 0 10px;
-    background-color: #4CAF50; /* Green button */
+    /*background-color: #4CAF50; Green button */
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    background-image: linear-gradient(#674cdb, #4335c2);
 }
 
 .buttons button:hover {
     background-color: #45a049; /* Darker green on hover */
+    background-image: linear-gradient(#5c9feb, #5940c8);
 }
 
-#imagePreview {
+/* #imagePreview {
     margin-top: 20px;
     border: 1px solid #ccc;
     padding: 10px;
-    background-color: #f9f9f9; /* Light gray background for preview */
-    overflow: hidden; /* Hide overflowing content */
-    max-height: 300px; /* Limit max height */
+    background-color: #f9f9f9; 
+    overflow: hidden; 
+    max-height: 300px; 
+    height: 150px;
 }
 
 .image-preview img {
-    max-width: 100%; /* Max width for images */
-    height: auto; /* Maintain aspect ratio */
-    display: block; /* Remove any spacing */
-    margin: 0 auto; /* Center align image */
+    max-width: 100%; 
+    height: auto; 
+    display: block; 
+    margin: 0 auto; 
 }
+    */
 
 .text-result {
     margin-top: 20px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
+    border-radius: 10px;
     padding: 10px;
-    background-color: #fff; /* White background for text result */
     min-height: 200px;
     overflow-wrap: break-word;
+    background-color: transparent;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 #copyButton,#clear {
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: #008CBA; /* Blue button */
-    color: #fff;
+    background-image: linear-gradient(#674cdb, #4335c2);
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-#copyButton:hover,#clear:hover {
-    background-color: #005f6b; /* Darker blue on hover */
+#clearButton{
+    justify-content: center;
 }
+
+#copyButton:hover,#clear:hover {
+    background-image: linear-gradient(#5c9feb, #5940c8);
+}
+
+
+.image-upload-container {
+    position: relative;
+    width: auto;
+    height: 300px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .upload-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(123, 93, 230, 0.3),rgba(82, 85, 248, 1));
+    /* background-image: linear-gradient(rgba(115, 105, 255, 0.2), rgba(138, 105, 255, 0.8)); */
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .upload-overlay:hover {
+    
+    background-image: linear-gradient(rgba(158, 105, 255, 0.8), rgb(57, 81, 178,0.7));
+    /* background-image: linear-gradient(#5858dc, #4a54eb); */
+    backdrop-filter: blur(15px); /* Dark gray background with 30% opacity */
+  }
+  
+  .upload-overlay span {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .image-preview {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgb(246, 3, 246), rgb(149, 99, 260));
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+
+/* Loading overlay */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: none;
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+  }
+  #loading-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 10px solid #ccc;
+    border-top-color: #007bff;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+  }
+  @keyframes spin {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+  #loading-log{
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    top: 59%;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+
+/* ClipBoard Button copied*/
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+  }
+  
+  .popup.show {
+    display: block;
+    animation: fadeIn 0.5s;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .buttons {
+    display: none !important;
+  }
+  
+  .buttons.show {
+    display: flex !important;
+  }
+
+  .toggle-button {
+    background-color: transparent;
+    color: #6544dd;
+    border: none;
+    border-radius: 300px;
+    padding: 1px 1px;
+    font-size: 30px;
+    cursor: pointer;
+    margin: 0px !important;
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    
+  }
+ .toggle-button:hover {
+    background-color: #4633d37e;
+  }
+ .toggle-button i {
+    margin-right: 1px;
+  }
